@@ -8,11 +8,13 @@ from box import ConfigBox
 import yaml  
 
 # It enforces type annotations at runtime, ensuring that function inputs/outputs match the declared types.
-from ensure import ensure_annotations  
+# from ensure import ensure_annotations  
 from cnnClassifier.logger import logger 
 
+from typing import List
 
-@ensure_annotations
+
+# @ensure_annotations
 def read_yaml(path_to_yaml:Path)->ConfigBox:
     """
     Reads a YAML file and returns its contents as a ConfigBox.
@@ -23,3 +25,18 @@ def read_yaml(path_to_yaml:Path)->ConfigBox:
         logger.info(f"YAML file loaded successfully: {path_to_yaml}")
 
         return ConfigBox(content)
+    
+# @ensure_annotations
+def create_directories(path_to_directories:List[Path],verbose=True):
+    """
+    Create a list of directories.
+
+    Args:
+        path_to_directories (List[Path]): List of directory paths.
+        verbose (bool): Log directory creation.
+    """
+    for path in path_to_directories:
+        path.mkdir(parents=True,exist_ok=True)
+
+        if verbose:
+            logger.info(f"Created directory at: {path}")
