@@ -11,3 +11,22 @@ data_ingestion:
 
   # Extracted dataset
   unzip_dir: artifacts/data_ingestion
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+
+  train_dir: artifacts/data_ingestion/Training
+
+  test_dir: artifacts/data_ingestion/Testing
+
+data_validation:
+  root_dir: artifacts/data_validation
+  status_file: artifacts/data_validation/status.txt
+  unzip_data_dir: artifacts/data_ingestion
+
+prepare_callbacks:
+  root_dir: artifacts/prepare_callbacks
+
+  checkpoint_model_filepath: artifacts/prepare_callbacks/model.keras
+
+  tensorboard_root_log_dir: artifacts/prepare_callbacks/tensorboard_logs

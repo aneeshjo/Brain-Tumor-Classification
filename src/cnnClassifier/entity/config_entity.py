@@ -7,3 +7,36 @@ class DataIngestionConfig:
     source_URL:str
     local_data_file:Path
     unzip_dir:Path
+
+@dataclass(frozen=True)
+class DataTransformationConfig:
+    root_dir: Path
+
+    train_dir: Path
+
+    test_dir: Path
+
+    image_size: tuple
+
+    batch_size: int
+
+    shuffle_buffer_size:int
+
+@dataclass(frozen=True)
+class DataValidationConfig:
+    """
+    Configuration required for Data Validation.
+    """
+
+    root_dir: Path
+    status_file: Path
+    unzip_data_dir: Path
+
+@dataclass(frozen=True)
+class PrepareCallbacksConfig:
+
+    root_dir: Path
+
+    checkpoint_model_filepath: Path
+
+    tensorboard_root_log_dir: Path

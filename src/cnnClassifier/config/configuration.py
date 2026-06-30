@@ -5,12 +5,15 @@ from src.cnnClassifier.utils.common import (
 )
 
 from src.cnnClassifier.entity.config_entity import (
-    DataIngestionConfig
+    DataIngestionConfig,
+    DataTransformationConfig,
+    DataValidationConfig,
+    PrepareCallbacksConfig
 )
 class ConfigurationManager:
     def __init__(self,
-                 config_file_path=CONFIG_FILE_PATH,
-                 params_file_path=PARAMS_FILE_PATH):
+        config_file_path=CONFIG_FILE_PATH,
+        params_file_path=PARAMS_FILE_PATH):
         self.config=read_yaml(config_file_path)
         self.params=read_yaml(params_file_path)
         create_directories([Path(self.config.artifacts_root)])
@@ -29,3 +32,55 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
+    
+    def get_data_transformation_config(self)->DataTransformationConfig:
+
+        config=self.config.data_transformation
+        create_directories([Path(config.root_dir)])
+
+        data_transformation_config = DataTransformationConfig(
+
+            root_dir=Path(config.root_dir),
+
+            train_dir=Path(config.train_dir),
+
+            test_dir=Path(config.test_dir),
+
+            image_size=tuple(self.params.IMAGE_SIZE),
+
+            batch_size=self.params.BATCH_SIZE,
+
+            shuffle_buffer_size=self.params.SHUFFLE_BUFFER_SIZE
+
+        )
+
+        return data_transformation_config
+    def get_data_validation_config(self) -> DataValidationConfig:
+        """
+        Creates Data Validation Configuration.
+        """
+
+        config = self.config.data_validation
+
+        create_directories([Path(config.root_dir)])
+
+        data_validation_config = DataValidationConfig(
+
+            root_dir=Path(config.root_dir),
+
+            status_file=Path(config.status_file),
+
+            unzip_data_dir=Path(config.unzip_data_dir)
+
+        )
+
+        return data_validation_config
+    
+    def get_prepare_callback_config(self)->PrepareCallbacksConfig:
+        config=self.config.prepare_callbacks
+        create_directories([Path(config.root_dir)])
+        prepare_callback_config=PrepareCallbacksConfig(
+            root_dir=Path(config.root_dir),
+            checkpoint_model_filepath=Path(config.checkpoint_model_filepath),
+            tensorboard_root_log_dir=Path(config.tensorboard_root_log_dir)
+        )
