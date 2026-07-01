@@ -10,15 +10,20 @@ class DataValidation:
     """
     Validates the dataset before training.
     """
-    EXPECTED_CLASSES = [
-    "glioma",
-    "meningioma",
-    "notumor",
-    "pituitary",
-    ]
+   
 
     def __init__(self, config: DataValidationConfig):
         self.config = config
+
+    
+    @property
+    def training_path(self):
+        return self.config.unzip_data_dir / "Training"
+
+
+    @property
+    def testing_path(self):
+        return self.config.unzip_data_dir / "Testing"
 
     def validate_dataset_exists(self)->bool:
         """
@@ -51,12 +56,12 @@ class DataValidation:
             bool: True if the training folder exists, False otherwise.
         """
         try:
-            training_path = self.config.unzip_data_dir / "Training"
+            # training_path = self.config.unzip_data_dir / "Training"
 
             logger.info("Starting training folder validation.")
 
-            if not training_path.exists():
-                logger.error(f"Training path {training_path} does not exist.")
+            if not self.training_path.exists():
+                logger.error(f"Training path {self.training_path} does not exist.")
                 return False
 
             logger.info("Training folder validation successful.")
@@ -75,12 +80,12 @@ class DataValidation:
             bool: True if the testing folder exists, False otherwise.
         """
         try:
-            testing_path = self.config.unzip_data_dir / "Testing"
+            # testing_path = self.config.unzip_data_dir / "Testing"
 
             logger.info("Starting testing folder validation.")
 
-            if not testing_path.exists():
-                logger.error(f"Testing path {testing_path} does not exist.")
+            if not self.testing_path.exists():
+                logger.error(f"Testing path {self.testing_path} does not exist.")
                 return False
 
             logger.info("Testing folder validation successful.")
@@ -102,15 +107,15 @@ class DataValidation:
         """
 
         try:
-            training_path = self.config.unzip_data_dir / "Training"
-            testing_path = self.config.unzip_data_dir / "Testing"
+            # training_path = self.config.unzip_data_dir / "Training"
+            # testing_path = self.config.unzip_data_dir / "Testing"
 
-            for class_name in self.EXPECTED_CLASSES:
-                if not (training_path / class_name).exists():
+            for class_name in self.config.EXPECTED_CLASSES:
+                if not (self.training_path / class_name).exists():
                     logger.error(f"Class folder {class_name} does not exist in Training directory.")
                     return False
 
-                if not (testing_path / class_name).exists():
+                if not (self.testing_path / class_name).exists():
                     logger.error(f"Class folder {class_name} does not exist in Testing directory.")
                     return False
             logger.info("All expected class folders exist in both Training and Testing directories.")

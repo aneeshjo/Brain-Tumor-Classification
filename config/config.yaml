@@ -23,6 +23,11 @@ data_validation:
   root_dir: artifacts/data_validation
   status_file: artifacts/data_validation/status.txt
   unzip_data_dir: artifacts/data_ingestion
+  expected_classes:
+    - glioma
+    - meningioma
+    - pituitary
+    - notumor
 
 prepare_callbacks:
   root_dir: artifacts/prepare_callbacks

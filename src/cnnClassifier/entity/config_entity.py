@@ -31,7 +31,7 @@ class DataValidationConfig:
     root_dir: Path
     status_file: Path
     unzip_data_dir: Path
-
+    EXPECTED_CLASSES: list  # List of expected class names
 @dataclass(frozen=True)
 class PrepareCallbacksConfig:
 

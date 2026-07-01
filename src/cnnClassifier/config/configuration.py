@@ -70,7 +70,8 @@ class ConfigurationManager:
 
             status_file=Path(config.status_file),
 
-            unzip_data_dir=Path(config.unzip_data_dir)
+            unzip_data_dir=Path(config.unzip_data_dir),
+            EXPECTED_CLASSES=config.expected_classes
 
         )
 
