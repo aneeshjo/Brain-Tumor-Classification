@@ -33,6 +33,24 @@ class DataValidationConfig:
     unzip_data_dir: Path
     expected_classes: list  # List of expected class names
     allowed_extensions: set  # List of allowed file extensions for images
+
+@dataclass(frozen=True)
+class DataTransformationConfig:
+    root_dir: Path
+
+    train_dir: Path
+
+    test_dir: Path
+
+    image_size: tuple
+
+    batch_size: int
+
+    seed: int
+
+    train_shuffle: bool
+
+    test_shuffle: bool
 @dataclass(frozen=True)
 class PrepareCallbacksConfig:
 

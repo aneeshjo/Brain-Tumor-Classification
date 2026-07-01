@@ -50,11 +50,16 @@ class ConfigurationManager:
 
             batch_size=self.params.BATCH_SIZE,
 
-            shuffle_buffer_size=self.params.SHUFFLE_BUFFER_SIZE
+            # shuffle_buffer_size=self.params.SHUFFLE_BUFFER_SIZE,
+
+            seed=self.params.SEED,
+            train_shuffle=self.params.TRAIN_SHUFFLE,
+            test_shuffle=self.params.TEST_SHUFFLE
 
         )
 
         return data_transformation_config
+    
     def get_data_validation_config(self) -> DataValidationConfig:
         """
         Creates Data Validation Configuration.
