@@ -31,7 +31,8 @@ class DataValidationConfig:
     root_dir: Path
     status_file: Path
     unzip_data_dir: Path
-    EXPECTED_CLASSES: list  # List of expected class names
+    expected_classes: list  # List of expected class names
+    allowed_extensions: set  # List of allowed file extensions for images
 @dataclass(frozen=True)
 class PrepareCallbacksConfig:
 

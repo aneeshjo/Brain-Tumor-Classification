@@ -7,6 +7,6 @@ validation_config = config.get_data_validation_config()
 
 validator = DataValidation(validation_config)
 
-status = validator.validate_dataset_structure()
+status = validator.validate_dataset()
 
 print(f"Validation Status: {status}")

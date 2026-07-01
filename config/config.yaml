@@ -28,6 +28,10 @@ data_validation:
     - meningioma
     - pituitary
     - notumor
+  allowed_extensions:
+    - .jpg
+    - .jpeg
+    - .png
 
 prepare_callbacks:
   root_dir: artifacts/prepare_callbacks
