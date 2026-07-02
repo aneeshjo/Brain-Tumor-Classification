@@ -51,6 +51,26 @@ class DataTransformationConfig:
     train_shuffle: bool
 
     test_shuffle: bool
+
+@dataclass(frozen=True)
+class PrepareBaseModelConfig:
+    root_dir: Path
+
+    model_path: Path
+
+    input_shape: tuple
+
+    num_classes: int
+
+    conv_filters: list
+
+    kernel_size: tuple
+
+    pool_size: tuple
+
+    dense_units: int
+
+    dropout_rate: float
 @dataclass(frozen=True)
 class PrepareCallbacksConfig:
 

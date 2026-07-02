@@ -1,3 +1,7 @@
+# ==========================
+# Data Transformation
+# ==========================
+
 IMAGE_SIZE: [224, 224]
 
 BATCH_SIZE: 32
@@ -8,14 +12,31 @@ TRAIN_SHUFFLE: True
 
 TEST_SHUFFLE: False
 
+# ==========================
+# Model Training
+# ==========================
+
 EPOCHS: 20
 
 LEARNING_RATE: 0.001
 
-INCLUDE_TOP: False
+# ==========================
+# CNN Architecture
+# ==========================
 
-WEIGHTS: imagenet
+INPUT_SHAPE: [224, 224, 3]
 
-CLASSES: 4
+NUM_CLASSES: 4
 
-# SHUFFLE_BUFFER_SIZE: 1000
+CONV_FILTERS:
+  - 32
+  - 64
+  - 128
+
+KERNEL_SIZE: [3, 3]
+
+POOL_SIZE: [2, 2]
+
+DENSE_UNITS: 128
+
+DROPOUT_RATE: 0.5

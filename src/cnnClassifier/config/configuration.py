@@ -8,6 +8,7 @@ from src.cnnClassifier.entity.config_entity import (
     DataIngestionConfig,
     DataTransformationConfig,
     DataValidationConfig,
+    PrepareBaseModelConfig,
     PrepareCallbacksConfig
 )
 class ConfigurationManager:
@@ -82,6 +83,22 @@ class ConfigurationManager:
         )
 
         return data_validation_config
+    
+    def get_prepare_base_model_config(self)->PrepareBaseModelConfig:
+        config=self.config.prepare_base_model
+        create_directories([Path(config.root_dir)])
+        prepare_base_model_config=PrepareBaseModelConfig(
+            root_dir=Path(config.root_dir),
+            model_path=Path(config.model_path),
+            input_shape=tuple(self.params.IMAGE_SIZE),
+            num_classes=self.params.NUM_CLASSES,
+            conv_filters=self.params.CONV_FILTERS,
+            kernel_size=tuple(self.params.KERNEL_SIZE),
+            pool_size=tuple(self.params.POOL_SIZE),
+            dense_units=self.params.DENSE_UNITS,
+            dropout_rate=self.params.DROPOUT_RATE
+        )
+        return prepare_base_model_config
     
     def get_prepare_callback_config(self)->PrepareCallbacksConfig:
         config=self.config.prepare_callbacks
