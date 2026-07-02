@@ -70,6 +70,8 @@ class PrepareBaseModelConfig:
 
     dense_units: int
 
+    learning_rate: float
+
     dropout_rate: float
 @dataclass(frozen=True)
 class PrepareCallbacksConfig:

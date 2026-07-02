@@ -83,4 +83,24 @@ class PrepareBaseModel:
             logger.exception("Error while building CNN model.")
             raise CustomException(e, sys)
 
-    
+    def compile_model(self, model: tf.keras.Model) -> None:
+        """
+        Compile the CNN model.
+
+        Args:
+            model (tf.keras.Model): CNN model to compile.
+        """
+        try:
+            logger.info("Compiling CNN model...")
+
+            model.compile(
+                optimizer=tf.keras.optimizers.Adam(
+                    learning_rate=self.config.learning_rate
+                ),
+                loss="sparse_categorical_crossentropy",
+                metrics=["accuracy"]
+            )
+            logger.info("CNN model compiled successfully.")
+        except Exception as e:
+            logger.exception("Error while compiling CNN model.")
+            raise CustomException(e, sys)

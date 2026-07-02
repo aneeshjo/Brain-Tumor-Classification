@@ -90,10 +90,11 @@ class ConfigurationManager:
         prepare_base_model_config=PrepareBaseModelConfig(
             root_dir=Path(config.root_dir),
             model_path=Path(config.model_path),
-            input_shape=tuple(self.params.IMAGE_SIZE),
+            input_shape=tuple(self.params.INPUT_SHAPE),
             num_classes=self.params.NUM_CLASSES,
             conv_filters=self.params.CONV_FILTERS,
             kernel_size=tuple(self.params.KERNEL_SIZE),
+            learning_rate=self.params.LEARNING_RATE,
             pool_size=tuple(self.params.POOL_SIZE),
             dense_units=self.params.DENSE_UNITS,
             dropout_rate=self.params.DROPOUT_RATE
