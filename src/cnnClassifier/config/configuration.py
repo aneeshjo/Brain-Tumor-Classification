@@ -9,7 +9,8 @@ from src.cnnClassifier.entity.config_entity import (
     DataTransformationConfig,
     DataValidationConfig,
     PrepareBaseModelConfig,
-    PrepareCallbacksConfig
+    PrepareCallbacksConfig,
+    ModelTrainingConfig
 )
 class ConfigurationManager:
     def __init__(self,
@@ -110,3 +111,13 @@ class ConfigurationManager:
             tensorboard_root_log_dir=Path(config.tensorboard_root_log_dir)
         )
         return prepare_callbacks_config
+    
+    def get_model_training_config(self)->ModelTrainingConfig:
+        config=self.config.model_training
+        create_directories([Path(config.root_dir)])
+        model_training_config=ModelTrainingConfig(
+            root_dir=Path(config.root_dir),
+            trained_model_path=Path(config.trained_model_path),
+            epochs=self.params.EPOCHS
+        )
+        return model_training_config

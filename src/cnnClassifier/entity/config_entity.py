@@ -81,3 +81,11 @@ class PrepareCallbacksConfig:
     checkpoint_model_filepath: Path
 
     tensorboard_root_log_dir: Path
+
+@dataclass(frozen=True)
+class ModelTrainingConfig:
+    root_dir: Path
+
+    trained_model_path: Path
+
+    epochs: int

@@ -44,3 +44,7 @@ prepare_callbacks:
   checkpoint_model_filepath: artifacts/prepare_callbacks/model.keras
 
   tensorboard_root_log_dir: artifacts/prepare_callbacks/tensorboard_logs
+model_training:
+  root_dir: artifacts/model_training
+
+  trained_model_path: artifacts/model_training/model.keras
