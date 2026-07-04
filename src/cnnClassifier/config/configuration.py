@@ -10,7 +10,8 @@ from src.cnnClassifier.entity.config_entity import (
     DataValidationConfig,
     PrepareBaseModelConfig,
     PrepareCallbacksConfig,
-    ModelTrainingConfig
+    ModelTrainingConfig,
+    ModelEvaluationConfig
 )
 class ConfigurationManager:
     def __init__(self,
@@ -121,3 +122,13 @@ class ConfigurationManager:
             epochs=self.params.EPOCHS
         )
         return model_training_config
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+        config = self.config.model_evaluation
+        create_directories([Path(config.root_dir)])
+        model_evaluation_config = ModelEvaluationConfig(
+            root_dir=Path(config.root_dir),
+            model_path=Path(config.model_path),
+            evaluation_file_path=Path(config.evaluation_file_path),
+            target_names=config.target_names
+        )
+        return model_evaluation_config

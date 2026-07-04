@@ -89,3 +89,10 @@ class ModelTrainingConfig:
     trained_model_path: Path
 
     epochs: int
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    root_dir: Path
+    model_path: Path
+    evaluation_file_path: Path
+    target_names: list

@@ -48,3 +48,16 @@ model_training:
   root_dir: artifacts/model_training
 
   trained_model_path: artifacts/model_training/model.keras
+
+model_evaluation:
+  root_dir: artifacts/model_evaluation
+
+  model_path: artifacts/prepare_callbacks/model.keras
+
+  evaluation_file_path: artifacts/model_evaluation/evaluation.json
+
+  target_names:
+    - Glioma
+    - Meningioma
+    - Pituitary
+    - No Tumor
