@@ -61,3 +61,16 @@ model_evaluation:
     - Meningioma
     - Pituitary
     - No Tumor
+
+model_prediction:
+  root_dir: artifacts/model_prediction
+
+  model_path: artifacts/prepare_callbacks/model.keras
+
+  image_size: [224, 224]
+
+  class_names:
+    - Glioma
+    - Meningioma
+    - Pituitary
+    - No Tumor

@@ -11,7 +11,8 @@ from src.cnnClassifier.entity.config_entity import (
     PrepareBaseModelConfig,
     PrepareCallbacksConfig,
     ModelTrainingConfig,
-    ModelEvaluationConfig
+    ModelEvaluationConfig,
+    ModelPredictionConfig
 )
 class ConfigurationManager:
     def __init__(self,
@@ -132,3 +133,15 @@ class ConfigurationManager:
             target_names=config.target_names
         )
         return model_evaluation_config
+    
+    def get_model_prediction_config(self) -> ModelPredictionConfig:
+
+        config = self.config.model_prediction
+        create_directories([Path(config.root_dir)])
+        model_prediction_config = ModelPredictionConfig(
+            root_dir=Path(config.root_dir),
+            model_path=Path(config.model_path),
+            image_size=list(self.params.IMAGE_SIZE),
+            class_names=config.class_names
+        )
+        

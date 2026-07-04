@@ -96,3 +96,14 @@ class ModelEvaluationConfig:
     model_path: Path
     evaluation_file_path: Path
     target_names: list
+
+@dataclass(frozen=True)
+class ModelPredictionConfig:
+
+    root_dir: Path
+
+    model_path: Path
+
+    image_size: list
+
+    class_names: list

@@ -3,6 +3,7 @@ import sys
 from cnnClassifier.logger import logger
 from cnnClassifier.exception import CustomException
 from cnnClassifier.pipeline.training_pipeline import TrainingPipeline
+from cnnClassifier.pipeline.evaluation_pipeline import EvaluationPipeline
 
 
 def main():
@@ -19,6 +20,18 @@ def main():
         history = training_pipeline.run_pipeline()
 
         logger.info("Training pipeline executed successfully.")
+
+        logger.info("=" * 50)
+        logger.info("Starting Evaluation Pipeline")
+        logger.info("=" * 50)
+
+        evaluation_pipeline = EvaluationPipeline()
+
+        results = evaluation_pipeline.run_pipeline()
+
+        logger.info("=" * 50)
+        logger.info("CNN Pipeline Completed Successfully")
+        logger.info("=" * 50)
 
         return history
 
