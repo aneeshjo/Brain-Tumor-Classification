@@ -2,7 +2,7 @@
 from cnnClassifier.pipeline.prediction_pipeline import PredictionPipeline
 
 def main():
-    image_path = "E:\\Project_Works\\ML_Projects\\Deep Learning\\CNN\\Brain-Tumor-Classification\\artifacts\\data_ingestion\\Testing\\meningioma\\Te-aug-me_14.jpg"
+    image_path = "E:\\Project_Works\\ML_Projects\\Deep Learning\\CNN\\Brain-Tumor-Classification\\artifacts\\data_ingestion\\Testing\\notumor\\Te-no_19.jpg"
    
 
     pipeline = PredictionPipeline()

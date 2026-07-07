@@ -57,7 +57,7 @@ class ModelPrediction:
             logger.info(f"Preprocessing image from {image_path}...")
             image = tf.keras.preprocessing.image.load_img(image_path, target_size=tuple(self.config.image_size))
             image = tf.keras.preprocessing.image.img_to_array(image)
-            image = image / 255.0  # Normalize the image
+            #image = image / 255.0  # Normalize the image
             image = np.expand_dims(image, axis=0)
             logger.info("Image preprocessing completed.")
             return image
@@ -97,7 +97,14 @@ class ModelPrediction:
             logger.info(f"Prediction completed: {predicted_class_name} with confidence {confidence_score:.2f}")
             return {
                 "predicted_class": predicted_class_name,
-                "confidence_score": round(confidence_score, 2)
+                "confidence_score": round(confidence_score, 2),
+                "class_probabilities": {
+                    class_name: round(float(prob) * 100, 2)
+                    for class_name, prob in zip(
+                        self.config.class_names,
+                        predictions[0]
+                    )
+                }
             }
         except Exception as e:
             logger.exception("Error occurred during prediction.")

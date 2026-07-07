@@ -59,8 +59,8 @@ model_evaluation:
   target_names:
     - Glioma
     - Meningioma
-    - Pituitary
     - No Tumor
+    - Pituitary
 
 model_prediction:
   root_dir: artifacts/model_prediction
