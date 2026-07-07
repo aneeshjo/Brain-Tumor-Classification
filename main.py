@@ -28,6 +28,12 @@ def main():
         evaluation_pipeline = EvaluationPipeline()
 
         results = evaluation_pipeline.run_pipeline()
+        print("\nClassification Report:\n")
+        for class_name, metrics in results["classification_report"].items():
+            print(class_name, metrics)
+
+        print("\nConfusion Matrix:\n")
+        print(results["confusion_matrix"])
 
         logger.info("=" * 50)
         logger.info("CNN Pipeline Completed Successfully")

@@ -19,7 +19,7 @@ class DataIngestion:
 
             logger.info(f"Copying dataset from {source}")
 
-            shutil.copy(source, destination)
+            shutil.copy(source, destination) # Copy the dataset from the source URL to the local data file path.
 
             logger.info("Dataset copied successfully.")
         except Exception as e:

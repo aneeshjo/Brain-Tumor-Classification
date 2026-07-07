@@ -116,6 +116,10 @@ class DataTransformation:
             train_dataset = self.load_train_dataset()
             test_dataset = self.load_test_dataset()
 
+            # Debug prints
+            print("Training Class Names:", train_dataset.class_names)
+            print("Testing Class Names:", test_dataset.class_names)
+
             train_dataset = self.optimize_dataset(train_dataset)
             test_dataset = self.optimize_dataset(test_dataset)
 

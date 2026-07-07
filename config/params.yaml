@@ -40,3 +40,8 @@ POOL_SIZE: [2, 2]
 DENSE_UNITS: 128
 
 DROPOUT_RATE: 0.5
+
+# ==========================
+# Early Stoppin
+# ==========================
+PATIENCE: 8

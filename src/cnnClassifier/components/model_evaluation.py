@@ -121,14 +121,14 @@ class ModelEvaluation:
                 json.dump(results, file, indent=4)
 
                 logger.info(
-                    f"Evaluation results saved to {self.config.evaluation_file_path}"
+                    f"Evaluation results saved to {self.config.evaluation_file_path}")
 
         except Exception as e:
             logger.exception(
                 "Error occurred while saving evaluation results."
             )
             raise CustomException(e, sys)
-)
+
     def evaluate(self,test_dataset: tf.data.Dataset) -> dict:
         """
         Evaluate the trained model on the test dataset.

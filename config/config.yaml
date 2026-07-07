@@ -72,5 +72,5 @@ model_prediction:
   class_names:
     - Glioma
     - Meningioma
-    - Pituitary
     - No Tumor
+    - Pituitary

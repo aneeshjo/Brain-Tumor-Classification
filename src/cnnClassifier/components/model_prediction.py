@@ -84,9 +84,16 @@ class ModelPrediction:
             preprocessed_image = self.preprocess_image(image_path)
             logger.info("Making prediction...")
             predictions = model.predict(preprocessed_image, verbose=0)
+            print("Raw Predictions:")
+            print(predictions)
+
+            for i, class_name in enumerate(self.config.class_names):
+                print(f"{class_name}: {predictions[0][i]:.4f}")
+            print("Predicted Index:", np.argmax(predictions, axis=1)[0])
+            print("Class Names:", self.config.class_names)
             predicted_class_index = np.argmax(predictions, axis=1)[0]
             confidence_score = float(np.max(predictions))*100
-            predicted_class_name = self.config.target_names[predicted_class_index]
+            predicted_class_name = self.config.class_names[predicted_class_index]
             logger.info(f"Prediction completed: {predicted_class_name} with confidence {confidence_score:.2f}")
             return {
                 "predicted_class": predicted_class_name,

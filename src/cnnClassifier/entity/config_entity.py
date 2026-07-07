@@ -82,6 +82,8 @@ class PrepareCallbacksConfig:
 
     tensorboard_root_log_dir: Path
 
+    patience: int
+
 @dataclass(frozen=True)
 class ModelTrainingConfig:
     root_dir: Path

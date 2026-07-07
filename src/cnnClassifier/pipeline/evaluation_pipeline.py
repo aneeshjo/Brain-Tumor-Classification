@@ -25,10 +25,10 @@ class EvaluationPipeline:
 
             transformation = DataTransformation(
                 config=data_transformation_config
-            )
+            ) 
 
             _, test_dataset = (
-                transformation.initiate_data_transformation()
+                transformation.get_datasets()
             )
             evaluation_config = config_manager.get_model_evaluation_config()
             evaluator = ModelEvaluation(config=evaluation_config)

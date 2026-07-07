@@ -59,6 +59,49 @@ class PrepareCallbacks:
             logger.exception("Error while creating TensorBoard callback.")
             raise CustomException(e, sys)
         
+    
+        
+    # def create_early_stopping_callback(self)-> tf.keras.callbacks.EarlyStopping:
+    #     """
+    #     Create and return an EarlyStopping callback.
+    #     returns:
+    #         tf.keras.callbacks.EarlyStopping: EarlyStopping callback.
+    #     """
+    #     try:
+    #         logger.info("Creating EarlyStopping callback...")
+    #         early_stopping_callback = tf.keras.callbacks.EarlyStopping(
+    #             monitor="val_accuracy",
+    #             patience=self.config.patience,
+    #             restore_best_weights=True,
+    #             verbose=1
+    #         )
+    #         logger.info("EarlyStopping callback created successfully.")
+    #         return early_stopping_callback
+    #     except Exception as e:
+    #         logger.exception("Error while creating EarlyStopping callback.")
+    #         raise CustomException(e, sys)
+    
+    # def create_reduce_lr_callback(self)-> tf.keras.callbacks.ReduceLROnPlateau:
+    #     """
+    #     Create and return a ReduceLROnPlateau callback.
+    #     returns:
+    #         tf.keras.callbacks.ReduceLROnPlateau: ReduceLROnPlateau callback.
+    #     """
+    #     try:
+    #         logger.info("Creating ReduceLROnPlateau callback...")
+    #         reduce_lr_callback = tf.keras.callbacks.ReduceLROnPlateau(
+    #             monitor="val_accuracy",
+    #             factor=0.5,
+    #             patience=4,
+    #             min_lr=1e-6,
+    #             verbose=1
+    #         )
+    #         logger.info("ReduceLROnPlateau callback created successfully.")
+    #         return reduce_lr_callback
+    #     except Exception as e:
+    #         logger.exception("Error while creating ReduceLROnPlateau callback.")
+    #         raise CustomException(e, sys)
+        
     def get_callbacks(self)->List[tf.keras.callbacks.Callback]:
         """
         Get a list of callbacks for model training.
@@ -69,7 +112,9 @@ class PrepareCallbacks:
             logger.info("Getting callbacks for model training...")
             checkpoint_callback = self.create_checkpoint_callback()
             tensorboard_callback = self.create_tensorboard_callback()
-            callbacks = [checkpoint_callback, tensorboard_callback]
+            # reduce_lr_callback = self.create_reduce_lr_callback()
+            # early_stopping_callback = self.create_early_stopping_callback()
+            callbacks = [checkpoint_callback, tensorboard_callback]  # reduce_lr_callback, early_stopping_callback]
             logger.info("Callbacks for model training obtained successfully.")
             return callbacks
         except Exception as e:

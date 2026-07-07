@@ -110,7 +110,8 @@ class ConfigurationManager:
         prepare_callbacks_config=PrepareCallbacksConfig(
             root_dir=Path(config.root_dir),
             checkpoint_model_filepath=Path(config.checkpoint_model_filepath),
-            tensorboard_root_log_dir=Path(config.tensorboard_root_log_dir)
+            tensorboard_root_log_dir=Path(config.tensorboard_root_log_dir),
+            patience=self.params.PATIENCE
         )
         return prepare_callbacks_config
     
@@ -144,4 +145,5 @@ class ConfigurationManager:
             image_size=list(self.params.IMAGE_SIZE),
             class_names=config.class_names
         )
+        return model_prediction_config
         

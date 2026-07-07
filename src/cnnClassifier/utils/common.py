@@ -20,11 +20,11 @@ def read_yaml(path_to_yaml:Path)->ConfigBox:
     Reads a YAML file and returns its contents as a ConfigBox.
     """
     with open(path_to_yaml) as yaml_file:
-        content=yaml.safe_load(yaml_file)
+        content=yaml.safe_load(yaml_file) # Safely load the YAML content into a Python dictionary.
 
         logger.info(f"YAML file loaded successfully: {path_to_yaml}")
 
-        return ConfigBox(content)
+        return ConfigBox(content) # ConfigBox allows you to access dictionary keys as attributes (dot notation), making configs easier to handle.
     
 # @ensure_annotations
 def create_directories(path_to_directories:List[Path],verbose=True):

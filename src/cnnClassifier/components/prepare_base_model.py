@@ -11,7 +11,6 @@ class PrepareBaseModel:
     """
     Builds and saves the CNN architecture.
     """
-
     def __init__(self, config: PrepareBaseModelConfig):
         self.config = config
 
@@ -34,6 +33,30 @@ class PrepareBaseModel:
                 )
             )
 
+            # # Data Augmentation Layer
+            # data_augmentation = tf.keras.Sequential(
+            #     [
+            #         tf.keras.layers.RandomRotation(0.05),
+            #         tf.keras.layers.RandomZoom(
+            #             height_factor=0.1,
+            #             width_factor=0.1
+            #         ),
+            #         tf.keras.layers.RandomTranslation(
+            #             height_factor=0.05,
+            #             width_factor=0.05
+            #         ),
+            #     ],
+            #     name="data_augmentation"
+            # )
+
+            # model.add(data_augmentation)
+
+
+            # Normalize pixel values from [0, 255] to [0, 1]
+            model.add(
+                tf.keras.layers.Rescaling(1.0 / 255)
+            )
+
             # Feature Extraction Block
             for filters in self.config.conv_filters:
 
@@ -45,7 +68,8 @@ class PrepareBaseModel:
                         activation="relu"
                     )
                 )
-
+                #Batch Normalization Layer
+                # 5
                 model.add(
                     tf.keras.layers.MaxPooling2D(
                         pool_size=self.config.pool_size
@@ -53,7 +77,9 @@ class PrepareBaseModel:
                 )
 
             # Classification Block
-            model.add(tf.keras.layers.Flatten())
+            model.add(
+                tf.keras.layers.Flatten()
+            )
 
             model.add(
                 tf.keras.layers.Dense(
