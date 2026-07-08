@@ -11,6 +11,8 @@ from sklearn.metrics import (
 from cnnClassifier.entity.config_entity import ModelEvaluationConfig
 from cnnClassifier.exception import CustomException
 from cnnClassifier.logger import logger
+from cnnClassifier.utils.model_downloader import download_model_if_needed
+
 
 class ModelPrediction:
 
@@ -33,7 +35,17 @@ class ModelPrediction:
 
         try:
             logger.info(f"Loading the trained model from {self.config.model_path}...")
-            model = tf.keras.models.load_model(self.config.model_path)
+            
+
+            # model_path = download_model_if_needed()
+
+            # model = tf.keras.models.load_model(
+            #     model_path
+            # )
+            download_model_if_needed()
+            model = tf.keras.models.load_model(
+    self.config.model_path
+)
             logger.info("Model loaded successfully.")
             return model
         except Exception as e:

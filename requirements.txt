@@ -10,4 +10,5 @@ tqdm
 ensure
 types-PyYAML
 gdown
+huggingface_hub
 -e .

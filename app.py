@@ -13,7 +13,9 @@ from cnnClassifier.ui.helper import (
     delete_temp_file,
     run_prediction
 )
-
+from cnnClassifier.utils.model_downloader import (
+    download_model_if_needed
+)
 
 # ==========================================================
 # Page Configuration
@@ -32,6 +34,9 @@ st.set_page_config(
 # ==========================================================
 
 load_css()
+
+with st.spinner("Preparing AI model..."):
+    download_model_if_needed()
 
 
 # ==========================================================

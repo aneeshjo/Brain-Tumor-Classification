@@ -68,9 +68,17 @@ tensorboard_logs/
 # ==========================
 # Artifacts
 # ==========================
-artifacts/data_ingestion/
-artifacts/data_transformation/
-artifacts/model_evaluation/
+# Ignore training artifacts
+artifacts/
+models/model.keras
+artifacts/
+dataset/
+models/
+*.keras
+
+# Keep deployed model
+!models/
+
 saved_models/
 
 # ==========================
