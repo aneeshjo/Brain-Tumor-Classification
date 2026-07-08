@@ -68,7 +68,9 @@ tensorboard_logs/
 # ==========================
 # Artifacts
 # ==========================
-artifacts/
+artifacts/data_ingestion/
+artifacts/data_transformation/
+artifacts/model_evaluation/
 saved_models/
 
 # ==========================
