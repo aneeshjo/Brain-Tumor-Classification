@@ -33,33 +33,13 @@ class PrepareBaseModel:
                 )
             )
 
-            # # Data Augmentation Layer
-            # data_augmentation = tf.keras.Sequential(
-            #     [
-            #         tf.keras.layers.RandomRotation(0.05),
-            #         tf.keras.layers.RandomZoom(
-            #             height_factor=0.1,
-            #             width_factor=0.1
-            #         ),
-            #         tf.keras.layers.RandomTranslation(
-            #             height_factor=0.05,
-            #             width_factor=0.05
-            #         ),
-            #     ],
-            #     name="data_augmentation"
-            # )
-
-            # model.add(data_augmentation)
-
-
-            # Normalize pixel values from [0, 255] to [0, 1]
             model.add(
                 tf.keras.layers.Rescaling(1.0 / 255)
             )
 
             # Feature Extraction Block
             for filters in self.config.conv_filters:
-
+                # Convolutional Layer
                 model.add(
                     tf.keras.layers.Conv2D(
                         filters=filters,

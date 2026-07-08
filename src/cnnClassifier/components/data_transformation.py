@@ -25,12 +25,17 @@ class DataTransformation:
         """
         try:
             logger.info("Loading training dataset...")
-
+            #easy to load image datasets directly from a folder structure. 
             train_dataset = tf.keras.utils.image_dataset_from_directory(
+                # The directory where the training images are stored.
                 directory=self.config.train_dir,
+                # The target size to which all images will be resized.
                 image_size=self.config.image_size,
+                # The number of images to include in each batch.
                 batch_size=self.config.batch_size,
+                # Whether to shuffle the dataset after loading.
                 shuffle=self.config.train_shuffle,
+                # A seed for the random number generator to ensure reproducibility.
                 seed=self.config.seed
             )
 
@@ -84,9 +89,17 @@ class DataTransformation:
         """
         try:
             logger.info("Optimizing dataset...")
+            # Keeps data in memory after the first epoch.
 
+            # Speeds up subsequent epochs since images don’t need to be reloaded from disk.
+
+            # Best when the dataset fits into memory.
             dataset = dataset.cache()
+#     Loads the next batch while the current one is being processed.
 
+# AUTOTUNE lets TensorFlow decide the optimal buffer size.
+
+# Improves GPU utilization and reduces idle time.
             dataset = dataset.prefetch(
                 buffer_size=tf.data.AUTOTUNE
             )

@@ -17,9 +17,11 @@ from src.cnnClassifier.entity.config_entity import (
 class ConfigurationManager:
     def __init__(self,
         config_file_path=CONFIG_FILE_PATH,
-        params_file_path=PARAMS_FILE_PATH):
+        params_file_path=PARAMS_FILE_PATH
+        ):
         self.config=read_yaml(config_file_path)
         self.params=read_yaml(params_file_path)
+        # Create the artifacts root directory if it doesn't exist
         create_directories([Path(self.config.artifacts_root)])
 
     def get_data_ingestion_config(self)->DataIngestionConfig:
@@ -38,8 +40,16 @@ class ConfigurationManager:
         return data_ingestion_config
     
     def get_data_transformation_config(self)->DataTransformationConfig:
+        """
+        Creates Data Transformation Configuration.
+        Returns:
+            DataTransformationConfig: Configuration for data transformation.
+        """
 
+        # Get the data transformation configuration from the main config
         config=self.config.data_transformation
+        # Create the root directory for data transformation if it doesn't exist-
+        # artifacts/data_transformation
         create_directories([Path(config.root_dir)])
 
         data_transformation_config = DataTransformationConfig(
